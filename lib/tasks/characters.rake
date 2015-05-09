@@ -1,7 +1,7 @@
-require 'pry'
-require 'digest'
-require 'typhoeus'
-require 'JSON'
+# require 'pry'
+# require 'digest'
+# require 'typhoeus'
+# require 'JSON'
 
 namespace :characters do
   desc "Creates all the marvel characters"
