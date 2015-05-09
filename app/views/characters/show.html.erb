@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @character.name %></h1>
+
+<%= image_tag(@character.image_url, alt: @character.name) %>
+
+<% if @character.comments.count > 1 %>
+  <ul>
+    <h2>Comments:</h2>
+    <% @character.comments.each do |comment| %>
+      <li>
+        <p><%= comment.text %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to 'Edit', edit_character_path(@character) %> |
+<%= link_to 'Destroy', @character, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', characters_path %>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Marvelous</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= yield %>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script>
+    function initialize() {
+      var mapCanvas = document.getElementById('map-canvas');
+      var mapOptions = {
+        center: new google.maps.LatLng(40.7444843,-73.9839973),
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(mapCanvas, mapOptions)
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+<br><br><br><br>
+  <%= render 'layouts/footer' %>
+
+</body>
+</html>
