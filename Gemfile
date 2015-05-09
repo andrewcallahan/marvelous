@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'typhoeus'
+gem 'dotenv-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -20,7 +21,6 @@ group :development, :test do
   gem 'pry'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-  gem 'dotenv-rails'
 end
 
 group :production do

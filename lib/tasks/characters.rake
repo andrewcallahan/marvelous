@@ -1,8 +1,3 @@
-# require 'pry'
-# require 'digest'
-# require 'typhoeus'
-# require 'JSON'
-
 namespace :characters do
   desc "Creates all the marvel characters"
   task :create => :environment do
@@ -11,7 +6,7 @@ namespace :characters do
       timestamp = Time.now.to_i.to_s
       hash = Digest::MD5.new.update(timestamp + ENV["private_key"] + ENV["public_key"])
 
-      "http://gateway.marvel.com:80/v1/public/characters?apikey=#{public_key}&ts=#{timestamp}&hash=#{hash}&limit=100&orderBy=name&offset=#{offset}"
+      "http://gateway.marvel.com:80/v1/public/characters?apikey=#{ENV["public_key"]}&ts=#{timestamp}&hash=#{hash}&limit=100&orderBy=name&offset=#{offset}"
     end
 
     hydra = Typhoeus::Hydra.hydra
@@ -29,8 +24,6 @@ namespace :characters do
 
       request.on_complete do |response|
         if response.success?
-          puts url
-
           characters = JSON.parse(response.body)["data"]["results"]
           characters.each do |c|
             name = c["name"]
@@ -49,5 +42,7 @@ namespace :characters do
     end
 
     hydra.run
+    puts "created #{Character.count} characters"
+
   end
 end
